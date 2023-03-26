@@ -7,18 +7,38 @@ import (
 )
 
 type RecipeHandler struct {
+	g        *gin.Engine
 	RUsecase domain.RecipeUsecase
 }
 
-func NewRecipeHandler(g *gin.Context, ru domain.RecipeUsecase) {
-	// handler := &RecipeHandler{
-	// 	RUsecase: ru,
-	// }
+func NewRecipeHandler(g *gin.Engine, ru domain.RecipeUsecase) {
+	handler := &RecipeHandler{
+		g:        g,
+		RUsecase: ru,
+	}
 
-	// g.Get()
+	api := g.Group("/api/v1/recipes")
+	{
+		api.GET("/:id", handler.FetchOneRecipe)
+		api.PATCH("/:id", handler.UpdateRecipe)
+		api.POST("/:id", handler.CreateRecipe)
+		api.DELETE("/:id", handler.DeleteRecipe)
+		api.GET("/", handler.FetchAllRecipe)
+	}
 
 }
 
-// func () FetchRecipe() error {
+func (rh *RecipeHandler) FetchOneRecipe(g *gin.Context) {
+}
 
-// }
+func (rh *RecipeHandler) UpdateRecipe(g *gin.Context) {
+}
+
+func (rh *RecipeHandler) CreateRecipe(g *gin.Context) {
+}
+
+func (rh *RecipeHandler) DeleteRecipe(g *gin.Context) {
+}
+
+func (rh *RecipeHandler) FetchAllRecipe(g *gin.Context) {
+}
