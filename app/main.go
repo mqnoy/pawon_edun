@@ -67,7 +67,6 @@ func main() {
 	g := gin.Default()
 
 	// setup global middleware
-	g.Use(middleware.ErrorHandler)
 
 	// setup repository
 	cr := _cookerRepository.NewMysqlCookerRepository(db)
@@ -77,6 +76,7 @@ func main() {
 	cu := _cookerUcase.NewCookerUsecase(cr, rr)
 	_cookerHttpDelivery.NewCookerHandler(g, cu)
 
+	g.Use(middleware.ErrorHandler)
 	g.Run("0.0.0.0:8080")
 
 }
