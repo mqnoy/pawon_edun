@@ -1,4 +1,4 @@
-module github.com/mqnoy/pawon_edun
+module example/web-service-gin
 
 go 1.20
 
