@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"example/web-service-gin/domain"
-	"example/web-service-gin/models"
+	"example/web-service-gin/model"
 
 	"github.com/sirupsen/logrus"
 )
@@ -27,7 +27,7 @@ func (cu *cookerUsecase) RemoveFavoriteRecipe() error {
 	return nil
 }
 
-func (cu *cookerUsecase) ListAllRecipes(cookerId uint, pagination *models.Pagination) (*[]models.Recipe, error) {
+func (cu *cookerUsecase) ListAllRecipes(cookerId uint, pagination *model.Pagination) (*[]model.Recipe, error) {
 	recipes, err := cu.recipeRepo.GetByCookerId(cookerId, pagination)
 
 	if err != nil {

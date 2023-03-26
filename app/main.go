@@ -13,7 +13,7 @@ import (
 	_cookerRepository "example/web-service-gin/cooker/repository/mysql"
 	_cookerUcase "example/web-service-gin/cooker/usecase"
 	"example/web-service-gin/middleware"
-	"example/web-service-gin/models"
+	"example/web-service-gin/model"
 
 	_recipeRepository "example/web-service-gin/recipe/repository/mysql"
 )
@@ -55,8 +55,8 @@ func main() {
 
 	// Auto migration
 	// TODO: moved this
-	db.AutoMigrate(&models.Cooker{})
-	db.AutoMigrate(&models.Recipe{})
+	db.AutoMigrate(&model.Cooker{})
+	db.AutoMigrate(&model.Recipe{})
 
 	if err != nil || errSql != nil {
 		log.Fatalln(err)

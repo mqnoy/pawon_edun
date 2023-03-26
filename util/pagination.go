@@ -1,13 +1,13 @@
 package utils
 
 import (
-	"example/web-service-gin/models"
+	"example/web-service-gin/model"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
-func Pagination(c *gin.Context) models.Pagination {
+func Pagination(c *gin.Context) model.Pagination {
 	limit := 1
 	page := 1
 	sort := `created_at DESC`
@@ -25,7 +25,7 @@ func Pagination(c *gin.Context) models.Pagination {
 		}
 	}
 
-	return models.Pagination{
+	return model.Pagination{
 		Limit: limit,
 		Page:  page,
 		Sort:  sort,

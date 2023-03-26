@@ -2,7 +2,7 @@ package usecase
 
 import (
 	"example/web-service-gin/domain"
-	"example/web-service-gin/models"
+	"example/web-service-gin/model"
 )
 
 type recipeUsecase struct {
@@ -21,7 +21,7 @@ func (ru *recipeUsecase) CreateNewRecipe() error {
 	return nil
 }
 
-func (ru *recipeUsecase) DetailRecipe(id int) (res models.Recipe, err error) {
+func (ru *recipeUsecase) DetailRecipe(id int) (res model.Recipe, err error) {
 	// find recipe
 	// resRecipe, err   =ru.recipeRepo.GetById(id)
 	// if err != nill{

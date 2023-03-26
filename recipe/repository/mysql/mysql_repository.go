@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"example/web-service-gin/domain"
-	"example/web-service-gin/models"
+	"example/web-service-gin/model"
 	"fmt"
 
 	"gorm.io/gorm"
@@ -22,13 +22,13 @@ func (mcp *mysqlRecipeRepository) TableName() string {
 	return "recipes"
 }
 
-func (mcp *mysqlRecipeRepository) GetById(id uint) (result *models.Recipe, err error) {
-	cooker := &models.Cooker{
+func (mcp *mysqlRecipeRepository) GetById(id uint) (result *model.Recipe, err error) {
+	cooker := &model.Cooker{
 		ID: id,
 	}
 
 	fmt.Printf("%v", cooker)
-	// var result models.Cooker{}
+	// var result model.Cooker{}
 
 	// result := mcp.db.Model(cooker).First(cooker)
 	// if result == mcp.db.Error {
@@ -38,12 +38,12 @@ func (mcp *mysqlRecipeRepository) GetById(id uint) (result *models.Recipe, err e
 	return result, nil
 }
 
-func (mcp *mysqlRecipeRepository) GetByCookerId(cookerId uint, pagination *models.Pagination) (*[]models.Recipe, error) {
-	var results []models.Recipe
+func (mcp *mysqlRecipeRepository) GetByCookerId(cookerId uint, pagination *model.Pagination) (*[]model.Recipe, error) {
+	var results []model.Recipe
 
 	offset := (pagination.Page - 1) * pagination.Limit
 	queryBuider := mcp.DB.Limit(pagination.Limit).Offset(offset).Order(pagination.Sort)
-	result := queryBuider.Model(&models.Recipe{}).Where("cooker_id=?", cookerId).Find(&results)
+	result := queryBuider.Model(&model.Recipe{}).Where("cooker_id=?", cookerId).Find(&results)
 
 	if result.Error != nil {
 		message := result.Error
@@ -53,11 +53,11 @@ func (mcp *mysqlRecipeRepository) GetByCookerId(cookerId uint, pagination *model
 	return &results, nil
 }
 
-func (mcp *mysqlRecipeRepository) Store(*models.Recipe) (result *models.Recipe, err error) {
+func (mcp *mysqlRecipeRepository) Store(*model.Recipe) (result *model.Recipe, err error) {
 	return result, nil
 }
 
-func (mcp *mysqlRecipeRepository) Update(*models.Recipe) (result *models.Recipe, err error) {
+func (mcp *mysqlRecipeRepository) Update(*model.Recipe) (result *model.Recipe, err error) {
 	return result, nil
 }
 func (mcp *mysqlRecipeRepository) Delete(id uint) error {

@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"example/web-service-gin/domain"
-	"example/web-service-gin/models"
+	"example/web-service-gin/model"
 	"fmt"
 
 	"gorm.io/gorm"
@@ -22,13 +22,13 @@ func (mcp *mysqlCookerRepository) TableName() string {
 	return "cookers"
 }
 
-func (mcp *mysqlCookerRepository) GetById(id uint) (result *models.Cooker, err error) {
-	cooker := &models.Cooker{
+func (mcp *mysqlCookerRepository) GetById(id uint) (result *model.Cooker, err error) {
+	cooker := &model.Cooker{
 		ID: id,
 	}
 
 	fmt.Printf("%v", cooker)
-	// var result models.Cooker{}
+	// var result model.Cooker{}
 
 	// result := mcp.db.Model(cooker).First(cooker)
 	// if result == mcp.db.Error {
@@ -38,15 +38,15 @@ func (mcp *mysqlCookerRepository) GetById(id uint) (result *models.Cooker, err e
 	return result, nil
 }
 
-func (mcp *mysqlCookerRepository) GetByEmail(email string) (result *models.Cooker, err error) {
+func (mcp *mysqlCookerRepository) GetByEmail(email string) (result *model.Cooker, err error) {
 	return result, nil
 }
 
-func (mcp *mysqlCookerRepository) Store(*models.Cooker) (result *models.Cooker, err error) {
+func (mcp *mysqlCookerRepository) Store(*model.Cooker) (result *model.Cooker, err error) {
 	return result, nil
 }
 
-func (mcp *mysqlCookerRepository) Update(*models.Cooker) (result *models.Cooker, error error) {
+func (mcp *mysqlCookerRepository) Update(*model.Cooker) (result *model.Cooker, error error) {
 	return result, nil
 }
 func (mcp *mysqlCookerRepository) Delete(id uint) error {

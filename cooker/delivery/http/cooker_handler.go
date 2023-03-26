@@ -2,7 +2,7 @@ package delivery
 
 import (
 	"example/web-service-gin/domain"
-	"example/web-service-gin/utils"
+	utils "example/web-service-gin/util"
 	"net/http"
 	"strconv"
 
