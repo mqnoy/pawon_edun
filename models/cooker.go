@@ -8,7 +8,7 @@ import (
 
 type Cooker struct {
 	gorm.Model
-	ID        uint           `json:"id" gorm:"primaryKey"`
+	ID        uint           `json:"id" gorm:"primaryKey,column:id"`
 	Email     string         `json:"email" gorm:"column:email"`
 	Name      sql.NullString `json:"name" gorm:"column:name"`
 	Password  string         `json:"password" gorm:"column:password"`

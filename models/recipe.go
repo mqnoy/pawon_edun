@@ -8,7 +8,7 @@ import (
 
 type Recipe struct {
 	gorm.Model
-	ID               uint            `json:"id" gorm:"primaryKey"`
+	ID               uint            `json:"id" gorm:"primaryKey,column:id"`
 	CookerID         uint            `json:"cooker_id" gorm:"column:cooker_id"`
 	NumberOfServings int8            `json:"number_of_servings" gorm:"column:number_of_servings"`
 	Title            string          `json:"title" gorm:"column:title"`
