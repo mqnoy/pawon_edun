@@ -78,13 +78,12 @@ func main() {
 	cu := _cookerUcase.NewCookerUsecase(cr, rr)
 	_cookerHttpDelivery.NewCookerHandler(g, cu)
 
-	g.Use(middleware.ErrorHandler)
-
 	// pingpong
-	g.GET("/ping", func(c *gin.Context) {
+	g.GET("/api/v1/ping", func(c *gin.Context) {
 		c.Data(http.StatusOK, "text/plain", []byte("pong"))
 	})
 
+	g.Use(middleware.ErrorHandler)
 	g.Run("0.0.0.0:8080")
 
 }
