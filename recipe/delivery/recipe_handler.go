@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"example/web-service-gin/domain"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -29,16 +30,51 @@ func NewRecipeHandler(g *gin.Engine, ru domain.RecipeUsecase) {
 }
 
 func (rh *RecipeHandler) FetchOneRecipe(g *gin.Context) {
+	// TODO: code here
+	g.JSON(http.StatusOK, gin.H{
+		"message": "FetchOneRecipe",
+		"code":    http.StatusOK,
+		"status":  true,
+		"data":    nil,
+	})
 }
 
 func (rh *RecipeHandler) UpdateRecipe(g *gin.Context) {
+	// TODO: code here
+	g.JSON(http.StatusOK, gin.H{
+		"message": "UpdateRecipe",
+		"code":    http.StatusOK,
+		"status":  true,
+		"data":    nil,
+	})
 }
 
 func (rh *RecipeHandler) CreateRecipe(g *gin.Context) {
+	// TODO: code here
+	g.JSON(http.StatusOK, gin.H{
+		"message": "CreateRecipe",
+		"code":    http.StatusOK,
+		"status":  true,
+		"data":    nil,
+	})
 }
 
 func (rh *RecipeHandler) DeleteRecipe(g *gin.Context) {
+	// TODO: code here
+	g.JSON(http.StatusOK, gin.H{
+		"message": "DeleteRecipe",
+		"code":    http.StatusOK,
+		"status":  true,
+		"data":    nil,
+	})
 }
 
 func (rh *RecipeHandler) FetchAllRecipe(g *gin.Context) {
+	// TODO: code here
+	g.JSON(http.StatusOK, gin.H{
+		"message": "FetchOneRecipe",
+		"code":    http.StatusOK,
+		"status":  true,
+		"data":    nil,
+	})
 }
