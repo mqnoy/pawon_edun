@@ -1,9 +1,11 @@
 package main
 
 import (
+	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	gorm_logrus "github.com/onrik/gorm-logrus"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -20,10 +22,8 @@ import (
 
 func init() {
 	// TODO: load config here
-
-	log.SetFormatter(&log.TextFormatter{
-		FullTimestamp: true,
-	})
+	log.SetLevel(log.InfoLevel)
+	log.SetFormatter(&log.JSONFormatter{})
 }
 
 func main() {
@@ -32,7 +32,7 @@ func main() {
 
 	dsn := "root:12345678@tcp(127.0.0.1:3306)/pawon_edun?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-		// Logger: gorm_logrus.New(),
+		Logger: gorm_logrus.New(),
 		NowFunc: func() time.Time {
 			return time.Now().Local()
 		},
@@ -64,7 +64,9 @@ func main() {
 	db.AutoMigrate(&model.Cooker{})
 	db.AutoMigrate(&model.Recipe{})
 
-	g := gin.Default()
+	g := gin.New()
+	g.Use(middleware.LoggingMiddleware())
+	g.Use(gin.Recovery())
 
 	// setup global middleware
 
@@ -77,6 +79,12 @@ func main() {
 	_cookerHttpDelivery.NewCookerHandler(g, cu)
 
 	g.Use(middleware.ErrorHandler)
+
+	// pingpong
+	g.GET("/ping", func(c *gin.Context) {
+		c.Data(http.StatusOK, "text/plain", []byte("pong"))
+	})
+
 	g.Run("0.0.0.0:8080")
 
 }

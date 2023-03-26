@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/gin-gonic/gin v1.9.0
+	github.com/onrik/gorm-logrus v0.5.0
 	github.com/sirupsen/logrus v1.9.0
 	gorm.io/driver/mysql v1.4.7
 	gorm.io/gorm v1.24.6
