@@ -44,6 +44,12 @@ func main() {
 
 	sqlDB, errSql := db.DB()
 
+	if err != nil || errSql != nil {
+		log.Fatalln(err)
+	} else {
+		log.Info("Database is connected")
+	}
+
 	// SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
 	sqlDB.SetMaxIdleConns(10)
 
@@ -57,12 +63,6 @@ func main() {
 	// TODO: moved this
 	db.AutoMigrate(&model.Cooker{})
 	db.AutoMigrate(&model.Recipe{})
-
-	if err != nil || errSql != nil {
-		log.Fatalln(err)
-	} else {
-		log.Info("Database is connected")
-	}
 
 	g := gin.Default()
 
